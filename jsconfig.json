@@ -1,0 +1,9 @@
+{
+    "comment":"config để nó gợi ý đường dẫn đến thư mục con",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["src/*"]
+        }
+    }
+}
