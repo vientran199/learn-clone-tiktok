@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faCloudArrowDown, faMessage, faUser, faGear, faCoins, faSignOut } from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faUser, faGear, faCoins, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import HeadlessTippy from '@tippyjs/react/headless'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
@@ -12,6 +12,8 @@ import { Wrapper as PopperWraper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
 import Menu from '~/components/Popper/Menu'
+import Image from '~/components/Image'
+import { MessageIcon, UploadIcon } from '~/components/Icons'
 
 
 const cx = classNames.bind(styles) // Khong dùng classNames, thì sẽ dùng: classname={styles.postItem}, classname={style['post-item']}
@@ -51,7 +53,7 @@ const MENU_ITEMS = [
     },
 ]
 
-const USER_MENU =[
+const USER_MENU = [
     {
         icon: <FontAwesomeIcon icon={faUser} />,
         title: 'View profile',
@@ -98,7 +100,7 @@ function Header() {
     return <header className={cx('wrapper')}>
         <div className={cx('inner')}>
             <div className={cx('logo')}>
-                <img src={images.logo} alt="tiktok" />
+                <Image src={images.logo} alt="tiktok" />
             </div>
             <HeadlessTippy
                 interactive
@@ -129,16 +131,16 @@ function Header() {
                     userCurrent ? (
                         <>
                             <Tippy
-                            delay={[0,200]}
+                                delay={[0, 200]}
                                 content={'Upload video'}
                                 placement="bottom"
                             >
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudArrowDown} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                             <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faMessage} />
+                                <MessageIcon />
                             </button>
                         </>
                     ) :
@@ -150,11 +152,11 @@ function Header() {
                         )
                 }
                 <Menu
-                    items={userCurrent? USER_MENU : MENU_ITEMS}
+                    items={userCurrent ? USER_MENU : MENU_ITEMS}
                     onChange={handleMenuChange}
                 >
                     {userCurrent ? (
-                        <img
+                        <Image
                             src="https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/275736270_3167451736872504_3920449088984470837_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=xSFN9PBs-xgAX9SuWxq&_nc_ht=scontent.fsgn5-2.fna&oh=00_AT_Qy0p0KZxAgc6uDIpim0uDT38KKfcdsS4HNzlYuI3mcQ&oe=6298F316"
                             className={cx('user-avatar')}
                             alt='asd'
