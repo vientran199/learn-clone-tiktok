@@ -6,7 +6,7 @@ import {
     faCircleXmark,
     faSpinner
 } from '@fortawesome/free-solid-svg-icons'
-import * as searchServices from '~/apiServices/searchServices'
+import * as searchServices from '~/services/searchService'
 import HeadlessTippy from '@tippyjs/react/headless'
 import AccountItem from "~/components/AccountItem";
 import { Wrapper as PopperWraper } from '~/components/Popper'
@@ -19,7 +19,7 @@ function Search() {
     const [searchResult, setSearchResult] = useState([])
     const [showResult, setShowResult] = useState(true)
     const [loading, setLoading] = useState(false)
-    console.log(searchResult.length)
+
     const inputRef = useRef()
 
     const debounce = useDebounce(searchValue, 500);
@@ -33,7 +33,6 @@ function Search() {
         const fetchAPi = async () => {
             setLoading(true)
             const result = await searchServices.search(debounce);
-            console.log(result)
             setSearchResult(result)
 
             setLoading(false)

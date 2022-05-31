@@ -1,9 +1,9 @@
-import Header from "~/components/Layout/components/Header";
+import Header from "~/layouts/components/Header";
 
-function HeaderOnly({children}) {
+function HeaderOnly({ children }) {
     return (
         <div>
-            <Header/>
+            <Header />
             <div className="container">
                 <div className="content">
                     {children}

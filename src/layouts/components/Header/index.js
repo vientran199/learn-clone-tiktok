@@ -10,9 +10,9 @@ import images from '~/assets/images';
 import Button from '~/components/Button'
 import Menu from '~/components/Popper/Menu'
 import Image from '~/components/Image'
-import Search from '~/components/Layout/components/Search'
+import Search from '~/layouts/components/Search'
 import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons'
-import routesConfig from '~/config/routes'
+import config from '~/config'
 
 
 const cx = classNames.bind(styles) // Khong dùng classNames, thì sẽ dùng: classname={styles.postItem}, classname={style['post-item']}
@@ -199,7 +199,7 @@ function Header() {
     const userCurrent = true
     return <header className={cx('wrapper')}>
         <div className={cx('inner')}>
-            <Link to={routesConfig.home} className={cx('logo')}>
+            <Link to={config.routes.home} className={cx('logo')}>
                 <Image src={images.logo} alt="tiktok" />
             </Link>
 
