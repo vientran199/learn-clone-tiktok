@@ -17,31 +17,32 @@ const cx = classNames.bind(styles)
 function Search() {
     const [searchValue, setSearchValue] = useState('')
     const [searchResult, setSearchResult] = useState([])
-    const [showResult,setShowResult] = useState(true)
+    const [showResult, setShowResult] = useState(true)
     const [loading, setLoading] = useState(false)
-
+    console.log(searchResult.length)
     const inputRef = useRef()
 
-    const debounce = useDebounce(searchValue,500)
+    const debounce = useDebounce(searchValue, 500);
 
     useEffect(() => {
-        if(!debounce.trim()){
+        if (!debounce.trim()) {
             setSearchResult([])
             return
         }
 
-        const fetchAPi = async ()=>{
+        const fetchAPi = async () => {
             setLoading(true)
             const result = await searchServices.search(debounce);
+            console.log(result)
             setSearchResult(result)
 
             setLoading(false)
         }
-        
+
         fetchAPi()
     }, [debounce])
 
-    const handleHideResult = () =>{
+    const handleHideResult = () => {
         setShowResult(false)
     }
     return (
@@ -54,8 +55,8 @@ function Search() {
                         <h4 className={cx('search-title')}>Accounts</h4>
                         {
                             searchResult.map(account => {
-                                return <AccountItem key={account.id} data={account}/>
-                            } )
+                                return <AccountItem key={account.id} data={account} />
+                            })
                         }
                     </PopperWraper>
                 </div>
@@ -63,18 +64,18 @@ function Search() {
             onClickOutside={handleHideResult}
         >
             <div className={cx('search')}>
-                <input 
+                <input
                     ref={inputRef}
                     type='text'
-                    value={searchValue} 
-                    placeholder='Search account and video' 
-                    spellCheck={false} 
+                    value={searchValue}
+                    placeholder='Search account and video'
+                    spellCheck={false}
                     onChange={(e) => setSearchValue(e.target.value)}
                     onFocus={() => setShowResult(true)}
                 />
-                {!!searchValue &&!loading && (
-                    <button 
-                        className={cx('search-clear')} 
+                {!!searchValue && !loading && (
+                    <button
+                        className={cx('search-clear')}
                         onClick={(e) => {
                             setSearchValue('')
                             setSearchResult([])
@@ -85,7 +86,7 @@ function Search() {
                     </button>
                 )}
 
-                { loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
                 <button className={cx('search-btn')}>
                     <SearchIcon />
                 </button>
